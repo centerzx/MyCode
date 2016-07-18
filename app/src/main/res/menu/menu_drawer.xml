@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/item1"
+            android:checked="true"
+            android:icon="@mipmap/ic_launcher"
+            android:title="呵呵"
+            />
+
+
+        <item
+            android:id="@+id/item2"
+            android:icon="@mipmap/ic_launcher"
+            android:title="呵呵2"
+            />
+        <item
+            android:id="@+id/item3"
+            android:icon="@drawable/switch_on"
+            android:title="呵呵3"
+            />
+
+        <item
+            android:id="@+id/item4"
+            android:title="呵呵4"
+            >
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/item5"
+                        android:icon="@mipmap/ic_launcher"
+                        android:title="呵呵5"
+                        />
+
+
+                    <item
+                        android:id="@+id/item6"
+                        android:icon="@mipmap/ic_launcher"
+                        android:title="呵呵6"
+                        />
+                    <item
+                        android:id="@+id/item7"
+                        android:icon="@mipmap/ic_launcher"
+                        android:title="呵呵7"
+                        />
+                </group>
+            </menu>
+        </item>
+    </group>
+</menu> 

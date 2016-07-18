@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MyCode</string>
+    <string name="drawer_open">开启</string>
+    <string name="drawer_close">关闭</string>
+    <string name="format_string">我是可爱的%1$s,嘿嘿</string>
+    <string name="item_str">学号：%1$s,姓名：%2$s,年龄：%3$s,性别：%4$s,分数：%5$s</string>
+    <string name="item_str2">年龄：%1$s,性别：%2$s</string>
+    <string name="title_activity_refresh">RefreshActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_grid">Grid</string>
+    <string name="action_list">List</string>
+    <string name="action_view">view</string>
+</resources>

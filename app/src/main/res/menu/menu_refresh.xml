@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context="com.center.mycode.activity.RefreshActivity">
+    <item
+        android:id="@+id/action_view"
+        android:icon="@mipmap/ic_menu_grid"
+        android:orderInCategory="100"
+        android:title="@string/action_view"
+        app:showAsAction="always"/>
+</menu>

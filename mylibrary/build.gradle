@@ -1,0 +1,61 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        minSdkVersion 11
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            moduleName "mylibrary"
+            abiFilters "armeabi" //输出指定三种abi体系结构下的so库，目前可有可无。
+//            ldLibs "EGL", "GLESv3", "dl", "log"       // Link with these libraries! 在这里添加你原先在makefile里ldlibs所链接的库
+//            stl "stlport_shared"                      // Use shared stlport library
+        }
+        
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 不显示log
+            buildConfigField "boolean", "ENABLE_DEBUG", "false"
+            //移除无用资源
+            shrinkResources true
+        }
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "ENABLE_DEBUG", "true"
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}
+
+task makeJar(type: Copy) {
+    delete 'build/libs/IotHttpSdk.jar'
+    from('build/intermediates/bundles/release/')
+    into('build/libs/')
+    exclude "**/R.class"
+    exclude "**/R\$*.class"
+    include('classes.jar')
+    rename('classes.jar', 'IotHttpSdk.jar')
+}
+
+makeJar.dependsOn(build)
+
+task proguard(type: proguard.gradle.ProGuardTask, dependsOn: makeJar) {
+//  输入路径
+    injars "build/libs/IotHttpSdk.jar"
+//  输出路径
+    outjars 'libs/IotHttpSdk.jar'
+//  添加配置信息
+    configuration 'proguard-rules.pro'
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+}

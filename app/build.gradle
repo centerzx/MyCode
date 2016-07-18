@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        applicationId "com.center.mycode"
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 2
+        versionName "1.1"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java-gen']
+//            manifest.srcFile 'src/main/AndroidManifest.xml'
+//            res.srcDirs = ['src/main/res']
+//            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.kyleduo.switchbutton:library:1.4.1'
+    compile 'com.android.support:design:23.4.0'
+    ////Retrofit requires at minimum Java 7 or Android 2.3.
+    //Retrofit必须使用okhttp请求了，如果项目中没有okhttp的依赖的话，肯定会出错 。okhttp内部依赖okio所以也要添加。
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.okio:okio:1.8.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.google.code.gson:gson:2.6.2'
+    //如果你想接收json 结果并解析成DAO，你必须把Gson Converter 作为一个独立的依赖添加进来。
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    //沉浸式标题栏适配
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //谷歌推出的flexboxlayout
+    compile 'com.google.android:flexbox:0.1.2'
+    //greenDao
+    compile 'de.greenrobot:greendao:2.1.0'
+    compile 'com.marshalchen.ultimaterecyclerview:library:0.3.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+    compile 'com.huxq17.xrefreshview:xrefreshview:3.1.0'
+    compile files('libs/CmiotSDK.jar')
+    compile 'com.alibaba:fastjson:1.1.52.android'
+}
