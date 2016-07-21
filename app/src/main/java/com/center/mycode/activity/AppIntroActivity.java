@@ -27,6 +27,10 @@ public class AppIntroActivity extends BaseActivity
     
     private SystemBarTintManager mTintManager;
     
+    private ColorShades shades;
+    
+    private  int colorBg[];
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -55,6 +59,8 @@ public class AppIntroActivity extends BaseActivity
     
     private void init()
     {
+        shades = new ColorShades();
+        colorBg = getResources().getIntArray(R.array.splash_bg);
         mRootLayout = (RelativeLayout)findViewById(R.id.rl_root);
         mViewPager = (ViewPager)findViewById(R.id.viewpager);
         IntroPager introPager = new IntroPager(R.array.splash_icon, R.array.splash_desc);
@@ -64,8 +70,6 @@ public class AppIntroActivity extends BaseActivity
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
-                int colorBg[] = getResources().getIntArray(R.array.splash_bg);
-                ColorShades shades = new ColorShades();
                 shades.setFromColor(colorBg[position % colorBg.length])
                     .setToColor(colorBg[(position + 1) % colorBg.length])
                     .setShade(positionOffset);
