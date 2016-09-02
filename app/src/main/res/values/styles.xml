@@ -14,7 +14,8 @@
         <item name="android:windowNoTitle">true</item>
         <item name="colorPrimary">@color/colorPrimary</item><!--App bar 的背景色-->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item><!--状态栏背景色-->
-        <item name="colorAccent">@color/app_green</item><!--各控制元件(如：check box、switch 或是 radoi) 被勾选 (checked) 或是选定 (selected) 的颜色-->
+        <item name="colorAccent">@color/app_green
+        </item><!--各控制元件(如：check box、switch 或是 radoi) 被勾选 (checked) 或是选定 (selected) 的颜色-->
         <item name="colorControlNormal">@color/grey_700</item><!--各控制元件的预设颜色。-->
         <item name="android:textColorPrimary">@color/app_red</item><!--App bar 上的标题与更多菜单中的文字颜色,以及默认的文字颜色-->
         <item name="android:windowBackground">@color/grey</item><!--App 的背景色。-->
@@ -30,13 +31,36 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme2" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
-        <item name="actionBarStyle">@style/LightBaseActionBarStyle</item>
-    </style>
 
     <style name="LightBaseActionBarStyle" parent="@style/Widget.AppCompat.Light.ActionBar">
-        <item name="background">@color/yellow_400</item>
     </style>
+    <!-- Base application theme. -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <!--<item name="android:windowActionBar">false</item>-->
+        <!--<item name="android:windowNoTitle">true</item>-->
+        <!--<item name="actionBarStyle">@style/LightBaseActionBarStyle</item>-->
+    </style>
+
+    <!-- 日间主题 -->
+    <style name="DayTheme" parent="AppBaseTheme">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="root_view_bg">@color/grey</item>
+        <item name="btn_bg">@color/grey_400</item>
+        <item name="text_color">@color/grey_800</item>
+    </style>
+
+    <!-- 夜间主题 -->
+    <style name="NightTheme" parent="AppBaseTheme">
+        <item name="colorPrimary">@color/grey_600</item>
+        <item name="colorPrimaryDark">@color/grey_600</item>
+        <item name="colorAccent">@color/grey_300</item>
+        <item name="root_view_bg">@color/grey_700</item>
+        <item name="btn_bg">@color/grey_700</item>
+        <item name="text_color">@color/grey</item>
+    </style>
+
+
 </resources>

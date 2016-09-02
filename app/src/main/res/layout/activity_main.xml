@@ -3,7 +3,9 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
+              android:id="@+id/rootview"
               android:layout_height="match_parent"
+              android:background="?attr/root_view_bg"
               android:orientation="vertical"
               tools:context=".activity.MainActivity">
 
@@ -38,6 +40,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:text="松开\u0020收听"
+                        android:textColor="?attr/text_color"
                         android:textSize="16sp"/>
 
                     <ImageView
@@ -82,6 +85,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="20dp"
                         android:text="按住\u0020说话"
+                        android:textColor="?attr/text_color"
                         android:textSize="16sp"/>
                 </RelativeLayout>
 
@@ -109,23 +113,32 @@
                 android:layout_gravity="center_horizontal"/>
 
             <Button
+                android:id="@+id/btn1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:onClick="doAppCompat"
+                android:textColor="?attr/text_color"
+                android:background="?attr/btn_bg"
                 android:text="AppCompatActivity使用"/>
 
             <Button
+                android:id="@+id/btn2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:onClick="doAppIntro"
+                android:textColor="?attr/text_color"
+                android:background="?attr/btn_bg"
                 android:text="引导页滑动变化背景色使用"/>
 
             <Button
+                android:id="@+id/btn3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="?attr/text_color"
+                android:background="?attr/btn_bg"
                 android:onClick="doNetWork"
                 android:text="retrofit请求"/>
         </LinearLayout>

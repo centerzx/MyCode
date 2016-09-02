@@ -8,6 +8,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +25,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -31,6 +33,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.utils.ToastUtils;
 import com.center.mycode.R;
 import com.center.mycode.entity.UserInfoResponse;
 import com.cmcc.andmu.iothttpsdk.http.BaseResponse;
@@ -182,6 +185,12 @@ public class TestAppCompatActivity extends BaseActivity
                         
                         break;
                     case R.id.item7:
+                        ToastUtils toastUtil = new ToastUtils();
+                        toastUtil.Short(TestAppCompatActivity.this, "自定义message字体、背景色")
+                            .setToastColor(Color.WHITE, getResources().getColor(R.color.colorAccent))
+                            .setGravity(Gravity.CENTER, 0, 0)
+                            .show();
+                        
                         break;
                 }
                 return true;
@@ -461,19 +470,18 @@ public class TestAppCompatActivity extends BaseActivity
             PendingIntent.getActivity(this, 0, new Intent(this, TestGreenDaoActivity.class), 0);
 //        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.item_recycler_list);//自定义布局使用此类
 //        remoteViews.setOnClickPendingIntent(R.id.image, pendingIntent);
-        Notification notification =
-            builder.setAutoCancel(true)
+        Notification notification = builder.setAutoCancel(true)
 //                .setContent(remoteViews)
-                .setContentIntent(pendingIntent)//2.3及以下系统必须设置
-                .setColor(getResources().getColor(R.color.green_600))
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
-                .setContentTitle("这是标题")
-                .setContentText("这是内容")
-                .setWhen(System.currentTimeMillis())
-                .setShowWhen(true)
+            .setContentIntent(pendingIntent)//2.3及以下系统必须设置
+            .setColor(getResources().getColor(R.color.green_600))
+            .setSmallIcon(R.drawable.ic_launcher)
+            .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
+            .setContentTitle("这是标题")
+            .setContentText("这是内容")
+            .setWhen(System.currentTimeMillis())
+            .setShowWhen(true)
 //                .addAction(R.drawable.talk_p, "拉下后的标题", pendingIntent)//在这条通知下面添加一个icon图标button，点击触发p事件，例如 phone的挂断  
-                .build();
+            .build();
         NotificationManager manager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
         manager.notify(1, notification);
         

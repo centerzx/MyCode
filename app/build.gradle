@@ -56,4 +56,5 @@ dependencies {
     compile 'com.huxq17.xrefreshview:xrefreshview:3.1.0'
     compile files('libs/CmiotSDK.jar')
     compile 'com.alibaba:fastjson:1.1.52.android'
+    compile project(':utilcode')
 }

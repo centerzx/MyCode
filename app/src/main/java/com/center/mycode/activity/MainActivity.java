@@ -9,6 +9,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import retrofit2.Call;
@@ -17,11 +18,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import com.center.mycode.MyApplication;
 import com.center.mycode.R;
 import com.center.mycode.bean.User;
 import com.center.mycode.common.Constants;
 import com.center.mycode.face.IUserBiz;
+import com.center.mycode.utils.Colorful;
+import com.center.mycode.utils.setter.ViewGroupSetter;
 import com.kyleduo.switchbutton.SwitchButton;
 
 public class MainActivity extends BaseActivity
@@ -34,6 +36,8 @@ public class MainActivity extends BaseActivity
     
     private RelativeLayout talkRLP;
     
+    private LinearLayout rootview;
+    
     private boolean isHasLongClick = false;
     
     private ScaleAnimation pressAnimation1, pressAnimation2;
@@ -44,6 +48,8 @@ public class MainActivity extends BaseActivity
     
     private SwitchButton mSwithBtn;
     
+    public Colorful mColorful;
+    public  boolean isNight = false ;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -52,6 +58,7 @@ public class MainActivity extends BaseActivity
         retrofit = new Retrofit.Builder().baseUrl(Constants.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+        rootview= (LinearLayout)findViewById(R.id.rootview);
         talkRL = (RelativeLayout)findViewById(R.id.talk_rl);
         talkRLN = (RelativeLayout)findViewById(R.id.talk_rl_n);
         talkRLP = (RelativeLayout)findViewById(R.id.talk_rl_p);
@@ -79,11 +86,12 @@ public class MainActivity extends BaseActivity
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
             {
                 Log.e("mSwithBtn", "" + isChecked);
-                MyApplication.updateNightMode(isChecked);
+//                MyApplication.updateNightMode(isChecked);
+                changeThemeWithColorful();
             }
         });
         setAnimation();
-        
+        setupColorful();
         //沉浸式效果
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
 //        {
@@ -115,6 +123,50 @@ public class MainActivity extends BaseActivity
 //                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 //        }
 //    }
+    
+    /**
+     * 设置各个视图与颜色属性的关联
+     */
+    private void setupColorful() {
+        ViewGroupSetter listViewSetter = new ViewGroupSetter(rootview);
+//        // 绑定ListView的Item View中的news_title视图，在换肤时修改它的text_color属性
+//        listViewSetter.childViewTextColor(R.id.news_title, R.attr.text_color);
+        // 构建Colorful对象来绑定View与属性的对象关系
+        mColorful = new Colorful.Builder(this)
+//            .backgroundDrawable(R.id.rootview, R.attr.root_view_bg)
+            // 设置view的背景图片
+            .backgroundColor(R.id.rootview, R.attr.root_view_bg)
+            // 设置view的背景图片
+            .backgroundColor(R.id.btn1, R.attr.btn_bg)
+            // 设置背景色
+            .textColor(R.id.btn1, R.attr.text_color)
+            .backgroundColor(R.id.btn2, R.attr.btn_bg)
+            // 设置背景色
+            .textColor(R.id.btn2, R.attr.text_color)
+            .backgroundColor(R.id.btn3, R.attr.btn_bg)
+            // 设置背景色
+            .textColor(R.id.btn3, R.attr.text_color)
+            // 设置背景色
+            .textColor(R.id.talk_press, R.attr.text_color)
+            .setter(listViewSetter) // 手动设置setter
+            .create(); // 设置文本颜色
+    }
+    
+    // 切换主题
+    public void changeThemeWithColorful() {
+        if (mColorful==null){
+            Log.e("mColorful","mColorful==null");
+            return;
+        }
+        if (isNight) {
+            mColorful.setTheme(R.style.DayTheme);
+            Log.e("DayTheme","DayTheme");
+        } else {
+            mColorful.setTheme(R.style.NightTheme);
+            Log.e("NightTheme","NightTheme");
+        }
+        isNight = !isNight;
+    }
     
     private class PressToSpeakListen implements View.OnTouchListener
     {
